@@ -23,8 +23,7 @@ Spring Rest Docs 사용 가이드
 
 <!-- ABOUT THE PROJECT -->
 ## 프로젝트 소개
-"[Spring REST Docs][url-spring-rest-docs-project]" 를 이용하여 깔끔한 API 문서를 생성할 수 있습니다. 그 방법을 소개하기 위한 예제 프로젝트입니다.
- 
+곧 기술블로그를 통해 'Spring REST Docs 작성가이드 공유드리겠습니다.' 
 <p style="text-align: right">(<a href="#readme-top">최상단 이동</a>)</p>
 
 <!-- GETTING STARTED -->
@@ -33,9 +32,6 @@ Spring Rest Docs 사용 가이드
 프로젝트를 로컬에서 시작하려면 다음 안내를 따라주시면 됩니다.
 
 ### 요구사항
-* Java 17 이 설치되어 있어야 합니다.
-   * [SDKMAN.io](https://sdkman.io/) 를 이용해서 설치하실 수 있습니다.
-   * 참고: [여러 개의 JDK를 설치하고 선택해서 사용하기](https://blog.benelog.net/installing-jdk.html) 
 
 ### 설치
 
