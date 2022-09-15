@@ -1,0 +1,13 @@
+[discrete]
+===== 요청필드(Request fields)
+|===
+|필드|타입|필수값|설명|형식
+
+{{#fields}}
+|{{path}}
+|{{type}}
+|{{^optional}}true{{/optional}}
+a|{{description}}
+a|{{#format}}{{format}}{{/format}}{{^format}}{{/format}}
+{{/fields}}
+|===

@@ -1,0 +1,9 @@
+#
+# 코드소유자(Code Owner) 정보
+# @see https://docs.github.com/en/repositories/managing-your-repositorys-settings-and-features/customizing-your-repository/about-code-owners
+# 코드 변경 후 Pull Request(PR)이 생성되면 자동으로 코드리뷰요청을 받게되는 사람을 기재합니다.
+# CODEOWNERS 에 기재된 사람에게 자동으로 코드리뷰가 요청됩니다.
+#
+
+# Global owners: Repository 내 모든 것에 소유권한을 가지고 있는 사람
+* @honeymon-enterprise

@@ -1,0 +1,98 @@
+plugins {
+    id "org.springframework.boot" version "2.7.3"
+    id "io.spring.dependency-management" version "1.0.13.RELEASE"
+    id "org.asciidoctor.jvm.convert" version "3.3.2"
+    id "com.gorylenko.gradle-git-properties" version "2.4.1"
+    id "com.epages.restdocs-api-spec" version "0.16.2"
+    id "java"
+}
+
+group = "com.kurly.tet"
+version = "0.0.1-SNAPSHOT"
+sourceCompatibility = JavaVersion.VERSION_17
+
+configurations {
+    compileOnly {
+        extendsFrom annotationProcessor
+    }
+    asciidoctorExt
+}
+
+repositories {
+    mavenCentral()
+}
+
+ext {
+    set("snippetsDir", file("build/generated-snippets"))
+}
+
+dependencies {
+    implementation("org.springframework.boot:spring-boot-starter-web")
+    implementation("org.springframework.boot:spring-boot-starter-validation")
+    asciidoctorExt("org.springframework.restdocs:spring-restdocs-asciidoctor")
+    implementation("com.google.code.findbugs:jsr305:3.0.2")
+
+    compileOnly("org.projectlombok:lombok")
+    annotationProcessor("org.springframework.boot:spring-boot-configuration-processor")
+    annotationProcessor("org.projectlombok:lombok")
+    testImplementation("org.springframework.boot:spring-boot-starter-test")
+    testImplementation("org.springframework.restdocs:spring-restdocs-mockmvc")
+}
+
+tasks.named("test") {
+    outputs.dir snippetsDir
+    useJUnitPlatform()
+}
+
+tasks.named("asciidoctor") {
+    inputs.dir snippetsDir
+    configurations "asciidoctorExt"
+    dependsOn test
+}
+
+openapi3 {
+    servers = [
+            { url = 'http://localhost:8080' },
+    ]
+    title = 'spring-rest-docs-guide'
+    description = 'spring-rest-docs-guide description'
+    version = '0.1.0'
+    format = 'yaml'
+}
+
+tasks.register("restDocsTest", Test) {
+    outputs.dir snippetsDir
+    useJUnitPlatform {
+        includeTags("restDocs")
+    }
+    finalizedBy "asciidoctor"
+    finalizedBy "openapi3"
+}
+
+tasks.register("apiBuild", GradleBuild) {
+    tasks = ["clean", "restDocsTest", "build"]
+}
+
+springBoot {
+    buildInfo()
+}
+
+gitProperties {
+    dateFormat = "yyyy-MM-dd'T'HH:mm:ss.Zz"
+    dateFormatTimeZone = "Asia/Seoul"
+    failOnNoGitDirectory = false
+}
+
+bootJar {
+    from("${asciidoctor.outputDir}") {
+        into "BOOT-INF/classes/static/docs"
+    }
+    from("swagger-ui") {
+        into "BOOT-INF/classes/static/swagger-ui"
+    }
+    from("build/api-spec") {
+        into "BOOT-INF/classes/static/swagger-ui"
+    }
+
+    archiveFileName.set "cloud-application.jar" // entrypoint.sh 에서 실행하기 위해서 파일명은 cloud-application.jar 로 통일
+}
