@@ -1,7 +1,7 @@
-package com.kurly.tet.guide.springrestdocs.infrastructure.web.advisor;
+package com.kurly.tet.guide.springrestdocs.infrastructure.web.common.advisor;
 
 import com.kurly.tet.guide.springrestdocs.common.util.JsonUtils;
-import com.kurly.tet.guide.springrestdocs.infrastructure.web.dto.ApiResponseGenerator;
+import com.kurly.tet.guide.springrestdocs.infrastructure.web.common.dto.ApiResponseGenerator;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.core.GenericTypeResolver;
 import org.springframework.core.MethodParameter;

@@ -1,8 +1,8 @@
 package com.kurly.tet.guide.springrestdocs.documenation;
 
 import com.kurly.tet.guide.springrestdocs.common.util.JsonUtils;
-import com.kurly.tet.guide.springrestdocs.infrastructure.web.advisor.ApiResponseWrappingAdvisor;
-import com.kurly.tet.guide.springrestdocs.infrastructure.web.handler.GlobalRestControllerExceptionHandler;
+import com.kurly.tet.guide.springrestdocs.infrastructure.web.common.advisor.ApiResponseWrappingAdvisor;
+import com.kurly.tet.guide.springrestdocs.infrastructure.web.common.handler.GlobalRestControllerExceptionHandler;
 import org.springframework.core.convert.converter.Converter;
 import org.springframework.format.support.DefaultFormattingConversionService;
 import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;

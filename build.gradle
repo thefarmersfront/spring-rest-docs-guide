@@ -31,6 +31,9 @@ dependencies {
     implementation("org.springframework.boot:spring-boot-starter-validation")
     asciidoctorExt("org.springframework.restdocs:spring-restdocs-asciidoctor")
     implementation("com.google.code.findbugs:jsr305:3.0.2")
+    //@see <a href="https://springdoc.org/#getting-started">springdoc-openapi getting started.</a
+    implementation("org.springdoc:springdoc-openapi-ui:1.6.11")
+    implementation("org.springdoc:springdoc-openapi-webmvc-core:1.6.11")
 
     compileOnly("org.projectlombok:lombok")
     annotationProcessor("org.springframework.boot:spring-boot-configuration-processor")

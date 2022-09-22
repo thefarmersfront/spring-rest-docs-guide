@@ -1,4 +1,4 @@
-package com.kurly.tet.guide.springrestdocs.infrastructure.web.dto;
+package com.kurly.tet.guide.springrestdocs.infrastructure.web.common.dto;
 
 import com.kurly.tet.guide.springrestdocs.domain.BusinessCode;
 import lombok.Getter;

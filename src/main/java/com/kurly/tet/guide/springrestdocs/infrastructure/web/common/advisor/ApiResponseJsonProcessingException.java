@@ -1,4 +1,4 @@
-package com.kurly.tet.guide.springrestdocs.infrastructure.web.advisor;
+package com.kurly.tet.guide.springrestdocs.infrastructure.web.common.advisor;
 
 import com.kurly.tet.guide.springrestdocs.common.exception.BusinessException;
 import org.springframework.http.HttpStatus;

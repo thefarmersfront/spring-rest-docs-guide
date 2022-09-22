@@ -13,6 +13,9 @@ public class Constant {
     public static final String PROFILE_PERFORMANCE = "perf";
     public static final String PROFILE_PRODUCTION = "prod";
 
+    public static final String HOST_LOCAL = "12.0.0.1";
+    public static final String HOST_DEV = "spring-rest-docs-guide.dev.kurly.in";
+
     public static final String FORMAT_LOCAL_DATE_TIME = "yyyy-MM-dd'T'HH:mm:ss";
     public static final String FORMAT_LOCAL_DATE = "yyyy-MM-dd";
     public static final String FORMAT_LOCAL_TIME = "HH:mm:ss";

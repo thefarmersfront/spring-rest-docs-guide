@@ -1,4 +1,4 @@
-package com.kurly.tet.guide.springrestdocs.infrastructure.web.component;
+package com.kurly.tet.guide.springrestdocs.infrastructure.web.common.component;
 
 import com.fasterxml.jackson.core.JacksonException;
 import com.fasterxml.jackson.core.JsonGenerator;

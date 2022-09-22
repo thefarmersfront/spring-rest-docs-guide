@@ -1,9 +1,8 @@
-package com.kurly.tet.guide.springrestdocs.infrastructure.web.handler;
+package com.kurly.tet.guide.springrestdocs.infrastructure.web.common.handler;
 
 import com.kurly.tet.guide.springrestdocs.common.exception.BusinessException;
-import com.kurly.tet.guide.springrestdocs.domain.BusinessCode;
-import com.kurly.tet.guide.springrestdocs.infrastructure.web.dto.ApiResponse;
-import com.kurly.tet.guide.springrestdocs.infrastructure.web.dto.ApiResponseGenerator;
+import com.kurly.tet.guide.springrestdocs.infrastructure.web.common.dto.ApiResponse;
+import com.kurly.tet.guide.springrestdocs.infrastructure.web.common.dto.ApiResponseGenerator;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.core.convert.ConversionFailedException;
 import org.springframework.http.HttpStatus;
