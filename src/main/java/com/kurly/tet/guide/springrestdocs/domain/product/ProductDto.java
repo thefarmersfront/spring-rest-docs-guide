@@ -1,4 +1,4 @@
-package com.kurly.tet.guide.springrestdocs.domain;
+package com.kurly.tet.guide.springrestdocs.domain.product;
 
 import lombok.AccessLevel;
 import lombok.Getter;

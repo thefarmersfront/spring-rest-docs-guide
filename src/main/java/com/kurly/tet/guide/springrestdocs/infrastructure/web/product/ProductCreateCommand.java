@@ -1,6 +1,6 @@
 package com.kurly.tet.guide.springrestdocs.infrastructure.web.product;
 
-import com.kurly.tet.guide.springrestdocs.domain.ProductDto;
+import com.kurly.tet.guide.springrestdocs.domain.product.ProductDto;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;

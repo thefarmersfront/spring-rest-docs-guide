@@ -1,18 +1,13 @@
 package com.kurly.tet.guide.springrestdocs.infrastructure.web.product;
 
-import com.kurly.tet.guide.springrestdocs.domain.ProductDto;
-import com.kurly.tet.guide.springrestdocs.domain.ProductFacade;
-import com.kurly.tet.guide.springrestdocs.domain.exception.ProductNotFoundException;
+import com.kurly.tet.guide.springrestdocs.domain.product.ProductDto;
+import com.kurly.tet.guide.springrestdocs.application.product.ProductFacade;
 import com.kurly.tet.guide.springrestdocs.infrastructure.web.common.dto.PageRequest;
 import com.kurly.tet.guide.springrestdocs.infrastructure.web.common.dto.PageResponse;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
-import javax.annotation.PostConstruct;
 import javax.validation.Valid;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.concurrent.atomic.AtomicLong;
 
 @RestController
 public class ProductRestController {

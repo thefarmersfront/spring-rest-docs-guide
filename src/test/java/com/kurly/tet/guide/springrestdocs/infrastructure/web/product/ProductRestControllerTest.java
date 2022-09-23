@@ -1,6 +1,6 @@
 package com.kurly.tet.guide.springrestdocs.infrastructure.web.product;
 
-import com.kurly.tet.guide.springrestdocs.domain.ProductFacade;
+import com.kurly.tet.guide.springrestdocs.application.product.ProductFacade;
 import com.kurly.tet.guide.springrestdocs.domain.exception.ProductNotFoundException;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;

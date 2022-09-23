@@ -1,13 +1,13 @@
 package com.kurly.tet.guide.springrestdocs.documenation;
 
-import com.kurly.tet.guide.springrestdocs.domain.ProductStatus;
+import com.kurly.tet.guide.springrestdocs.domain.product.ProductStatus;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
 
-import static com.kurly.tet.guide.springrestdocs.domain.ProductStatus.ACTIVATED;
-import static com.kurly.tet.guide.springrestdocs.domain.ProductStatus.CREATED;
+import static com.kurly.tet.guide.springrestdocs.domain.product.ProductStatus.ACTIVATED;
+import static com.kurly.tet.guide.springrestdocs.domain.product.ProductStatus.CREATED;
 import static org.assertj.core.api.Assertions.assertThat;
 
 /**

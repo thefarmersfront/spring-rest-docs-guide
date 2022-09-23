@@ -1,5 +1,6 @@
-package com.kurly.tet.guide.springrestdocs.domain;
+package com.kurly.tet.guide.springrestdocs.domain.product;
 
+import com.kurly.tet.guide.springrestdocs.domain.DescriptionEnum;
 import lombok.Getter;
 
 import java.util.Set;

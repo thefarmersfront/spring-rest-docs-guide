@@ -1,6 +1,7 @@
-package com.kurly.tet.guide.springrestdocs.domain;
+package com.kurly.tet.guide.springrestdocs.application.product;
 
 import com.kurly.tet.guide.springrestdocs.domain.exception.ProductNotFoundException;
+import com.kurly.tet.guide.springrestdocs.domain.product.ProductDto;
 import com.kurly.tet.guide.springrestdocs.infrastructure.web.common.dto.PageRequest;
 import com.kurly.tet.guide.springrestdocs.infrastructure.web.common.dto.PageResponse;
 import com.kurly.tet.guide.springrestdocs.infrastructure.web.product.ProductCreateCommand;
