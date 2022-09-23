@@ -1,15 +1,20 @@
 package com.kurly.tet.guide.springrestdocs.infrastructure.web.common.dto;
 
-import lombok.AccessLevel;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
 
 @Getter
-@NoArgsConstructor(access = AccessLevel.PRIVATE)
+@Setter
+@NoArgsConstructor
 public class PageRequest {
+    @Min(value = 0)
     private int page;
+    @Min(value = 0)
     @Max(value = 1000)
     private int size;
 
@@ -30,6 +35,7 @@ public class PageRequest {
         return new PageRequest(page, size);
     }
 
+    @JsonIgnore
     public long getOffset() {
         return (long) page * (long) size;
     }

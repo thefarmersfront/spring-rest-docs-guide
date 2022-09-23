@@ -1,6 +1,9 @@
 package com.kurly.tet.guide.springrestdocs.documenation;
 
 import com.kurly.tet.guide.springrestdocs.common.util.JsonUtils;
+import com.kurly.tet.guide.springrestdocs.common.util.LocalDateTimeUtils;
+import com.kurly.tet.guide.springrestdocs.common.util.LocalDateUtils;
+import com.kurly.tet.guide.springrestdocs.common.util.LocalTimeUtils;
 import com.kurly.tet.guide.springrestdocs.infrastructure.web.common.advisor.ApiResponseWrappingAdvisor;
 import com.kurly.tet.guide.springrestdocs.infrastructure.web.common.handler.GlobalRestControllerExceptionHandler;
 import org.springframework.core.convert.converter.Converter;
@@ -11,7 +14,9 @@ import org.springframework.restdocs.mockmvc.MockMvcRestDocumentation;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.test.web.servlet.setup.StandaloneMockMvcBuilder;
+import org.springframework.web.filter.CharacterEncodingFilter;
 
+import java.nio.charset.StandardCharsets;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
@@ -40,13 +45,14 @@ public class MockMvcFactory {
                         new GlobalRestControllerExceptionHandler(),
                         new ApiResponseWrappingAdvisor())
                 .setConversionService(conversionService)
-                .setMessageConverters(new MappingJackson2HttpMessageConverter(JsonUtils.getMapper()));
+                .setMessageConverters(new MappingJackson2HttpMessageConverter(JsonUtils.getMapper()))
+                .addFilter(new CharacterEncodingFilter(StandardCharsets.UTF_8.name(), true));
     }
 
     public static class LocalDateTimeConverter implements Converter<String, LocalDateTime> {
         @Override
         public LocalDateTime convert(String source) {
-            return LocalDateTime.parse(source, DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss"));
+            return LocalDateTimeUtils.toLocalDateTime(source);
         }
     }
 
@@ -54,14 +60,14 @@ public class MockMvcFactory {
 
         @Override
         public LocalDate convert(String source) {
-            return LocalDate.parse(source, DateTimeFormatter.ofPattern("yyyy-MM-dd"));
+            return LocalDateUtils.toLocalDate(source);
         }
     }
 
     public static class LocalTimeConverter implements Converter<String, LocalTime> {
         @Override
         public LocalTime convert(String source) {
-            return LocalTime.parse(source, DateTimeFormatter.ofPattern("HH:mm:ss"));
+            return LocalTimeUtils.toLocalTime(source);
         }
     }
 }

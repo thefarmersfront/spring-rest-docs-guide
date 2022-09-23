@@ -29,7 +29,6 @@ ext {
 dependencies {
     implementation("org.springframework.boot:spring-boot-starter-web")
     implementation("org.springframework.boot:spring-boot-starter-validation")
-    asciidoctorExt("org.springframework.restdocs:spring-restdocs-asciidoctor")
     implementation("com.google.code.findbugs:jsr305:3.0.2")
     //@see <a href="https://springdoc.org/#getting-started">springdoc-openapi getting started.</a
     implementation("org.springdoc:springdoc-openapi-ui:1.6.11")
@@ -38,8 +37,14 @@ dependencies {
     compileOnly("org.projectlombok:lombok")
     annotationProcessor("org.springframework.boot:spring-boot-configuration-processor")
     annotationProcessor("org.projectlombok:lombok")
+
     testImplementation("org.springframework.boot:spring-boot-starter-test")
     testImplementation("org.springframework.restdocs:spring-restdocs-mockmvc")
+    //@see <a href="https://github.com/ePages-de/restdocs-api-spec">Spring REST Docs API specification Integration</a>
+    testImplementation("com.epages:restdocs-api-spec:0.16.2")
+    testImplementation("com.epages:restdocs-api-spec-mockmvc:0.16.2")
+
+    asciidoctorExt("org.springframework.restdocs:spring-restdocs-asciidoctor")
 }
 
 tasks.named("test") {
@@ -47,10 +52,21 @@ tasks.named("test") {
     useJUnitPlatform()
 }
 
+/**
+ * <p>
+ * 개발환경에서만 API문서를 제공하고자 한다면 빌드태스크에 asciidoctor 를 추가합니다.
+ * asciidoctor 가 수행될 때 통합테스트 실행 태스크 restDocsTest 를 수행하기에
+ * restDocsTest 를 추가로 수행하지 않아도 됩니다.
+ * </p>
+ * @see <a href="https://asciidoctor.github.io/asciidoctor-gradle-plugin/development-3.x/user-guide/">Asciidoctor Gradle Plugin Suite</a>
+ *
+ * ex)<code>./gradlew clean asciidoctor build</code>
+ */
 tasks.named("asciidoctor") {
     inputs.dir snippetsDir
     configurations "asciidoctorExt"
-    dependsOn test
+    dependsOn restDocsTest
+    baseDirFollowsSourceDir() // 원본파일작업은 .adoc 디렉터리 기준
 }
 
 openapi3 {

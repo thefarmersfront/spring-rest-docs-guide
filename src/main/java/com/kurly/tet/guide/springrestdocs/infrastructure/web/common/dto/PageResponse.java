@@ -1,16 +1,21 @@
 package com.kurly.tet.guide.springrestdocs.infrastructure.web.common.dto;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+import lombok.AccessLevel;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
 @Getter
+@NoArgsConstructor
 public class PageResponse<T> {
-    private final List<T> content = new ArrayList<>();
-    private final PageRequest pageRequest;
-    private final long total;
+    private List<T> content = new ArrayList<>();
+    private PageRequest pageRequest;
+    private long total;
 
     public PageResponse(List<T> content, PageRequest pageRequest, long total) {
         this.content.addAll(content);
@@ -23,25 +28,30 @@ public class PageResponse<T> {
     }
 
     public int getTotalPages() {
-        return getPageRequest().getSize() == 0 ? 1 : (int) Math.ceil(getTotal() / (double) getPageRequest().getSize());
+        return this.pageRequest.getSize() == 0 ? 1 : (int) Math.ceil(getTotal() / (double) this.pageRequest.getSize());
     }
 
+    @JsonProperty("hasPrevious")
     public boolean hasPrevious(){
-        return getPageRequest().getPage() > 0;
+        return this.pageRequest.getPage() > 0;
     }
 
+    @JsonProperty("isFirst")
     public boolean isFirst() {
         return !hasPrevious();
     }
 
+    @JsonProperty("hasNext")
     public boolean hasNext() {
-        return getPageRequest().getPage() + 1 < getTotalPages();
+        return this.pageRequest.getPage() + 1 < getTotalPages();
     }
 
+    @JsonProperty("isLast")
     public boolean isLast() {
         return !hasNext();
     }
 
+    @JsonProperty("hasContent")
     public boolean hasContent() {
         return !getContent().isEmpty();
     }

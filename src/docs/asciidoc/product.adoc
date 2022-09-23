@@ -1,1 +1,98 @@
 == 상품(Product)
+상품정보에 대한 검색/등록/상세조회/변경/삭제 기능을 제공합니다.
+
+
+=== 상품검색
+상품정보를 상품명(productName)과 상품번호(productNo)를 이용해서 검색할 수 있습니다.
+페이징 처리된 목록을 제공합니다.
+
+|====
+|속성 |설명
+
+|`page` |페이지(0 부터 시작)
+|`size` |페이지당 조회건수(최소: 1, 최대: 1000)
+
+|====
+
+
+[discrete]
+==== 요청
+include::{snippets}/get-v1-get-products/curl-request.adoc[]
+include::{snippets}/get-v1-get-products/httpie-request.adoc[]
+include::{snippets}/get-v1-get-products/http-request.adoc[]
+include::{snippets}/get-v1-get-products/request-parameters.adoc[]
+
+
+[discrete]
+==== 응답
+include::{snippets}/get-v1-get-products/http-response.adoc[]
+include::{snippets}/get-v1-get-products/response-fields.adoc[]
+
+
+=== 상품생성
+상품을 새롭게 등록합니다.
+
+[discrete]
+==== 요청
+include::{snippets}/post-v1-create-product/curl-request.adoc[]
+include::{snippets}/post-v1-create-product/httpie-request.adoc[]
+include::{snippets}/post-v1-create-product/http-request.adoc[]
+include::{snippets}/post-v1-create-product/request-fields.adoc[]
+
+
+[discrete]
+==== 응답
+include::{snippets}/post-v1-create-product/http-response.adoc[]
+include::{snippets}/post-v1-create-product/response-fields.adoc[]
+
+
+=== 상품상세조회
+상품세부정보를 조회합니다.
+
+[discrete]
+==== 요청
+include::{snippets}/get-v1-get-product/curl-request.adoc[]
+include::{snippets}/get-v1-get-product/httpie-request.adoc[]
+include::{snippets}/get-v1-get-product/http-request.adoc[]
+include::{snippets}/get-v1-get-product/path-parameters.adoc[]
+
+
+[discrete]
+==== 응답
+include::{snippets}/get-v1-get-product/http-response.adoc[]
+include::{snippets}/get-v1-get-product/response-fields.adoc[]
+
+
+=== 상품상세변경 
+상품세부정보를 변경합니다.
+
+[discrete]
+==== 요청
+include::{snippets}/put-v1-modify-product/curl-request.adoc[]
+include::{snippets}/put-v1-modify-product/httpie-request.adoc[]
+include::{snippets}/put-v1-modify-product/http-request.adoc[]
+include::{snippets}/put-v1-modify-product/path-parameters.adoc[]
+include::{snippets}/put-v1-modify-product/request-fields.adoc[]
+
+
+[discrete]
+==== 응답
+include::{snippets}/put-v1-modify-product/http-response.adoc[]
+include::{snippets}/put-v1-modify-product/response-fields.adoc[]
+
+
+
+=== 상품삭제
+상품을 삭제합니다.
+
+[discrete]
+==== 요청
+include::{snippets}/delete-v1-delete-product/curl-request.adoc[]
+include::{snippets}/delete-v1-delete-product/httpie-request.adoc[]
+include::{snippets}/delete-v1-delete-product/http-request.adoc[]
+include::{snippets}/put-v1-modify-product/path-parameters.adoc[]
+
+
+[discrete]
+==== 응답
+include::{snippets}/delete-v1-delete-product/http-response.adoc[]

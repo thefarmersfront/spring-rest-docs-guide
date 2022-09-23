@@ -7,6 +7,8 @@ import com.fasterxml.jackson.databind.DeserializationContext;
 import com.fasterxml.jackson.databind.JsonDeserializer;
 import com.fasterxml.jackson.databind.JsonSerializer;
 import com.fasterxml.jackson.databind.SerializerProvider;
+import com.kurly.tet.guide.springrestdocs.common.util.LocalDateTimeUtils;
+import com.kurly.tet.guide.springrestdocs.common.util.LocalTimeUtils;
 import org.springframework.boot.jackson.JsonComponent;
 
 import java.io.IOException;
@@ -17,7 +19,7 @@ public class LocalTimeJsonComponent {
     public static class Serializer extends JsonSerializer<LocalTime> {
         @Override
         public void serialize(LocalTime value, JsonGenerator gen, SerializerProvider serializers) throws IOException {
-
+            gen.writeString(LocalTimeUtils.toString(value));
         }
     }
 
@@ -25,7 +27,7 @@ public class LocalTimeJsonComponent {
 
         @Override
         public LocalTime deserialize(JsonParser p, DeserializationContext ctxt) throws IOException, JacksonException {
-            return null;
+            return LocalTimeUtils.toLocalTime(p.getText());
         }
     }
 }

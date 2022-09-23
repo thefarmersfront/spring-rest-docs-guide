@@ -1,59 +1,52 @@
 package com.kurly.tet.guide.springrestdocs.documenation;
 
-import com.kurly.tet.guide.springrestdocs.domain.GiftOrderStatus;
+import com.kurly.tet.guide.springrestdocs.domain.ProductStatus;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
 
-import static com.kurly.tet.guide.springrestdocs.domain.GiftOrderStatus.*;
+import static com.kurly.tet.guide.springrestdocs.domain.ProductStatus.ACTIVATED;
+import static com.kurly.tet.guide.springrestdocs.domain.ProductStatus.CREATED;
 import static org.assertj.core.api.Assertions.assertThat;
 
+/**
+ * enum 타입 아스키독 목록 스니펫 사용 문자형식 생성
+ */
+@DisplayName("지정된 enum 타입을 아스키독문법 목록(<li>) 형태로 출력")
 class DocumentFormatGeneratorTest {
+    @DisplayName("속성값만 나열함")
     @Test
     void testGeneratedEnums() {
-        var result = DocumentFormatGenerator.generatedEnums(GiftOrderStatus.class);
+        var result = DocumentFormatGenerator.generatedEnums(ProductStatus.class);
 
         assertThat(result).isEqualTo("""
                 * `CREATED`
-                * `READY_FOR_ACCEPT`
-                * `REJECTED`
-                * `ACCEPTED`
-                * `DELIVERY_PENDING`
-                * `DELIVERED`
-                * `ACCEPT_EXPIRED`
-                * `DELIVERY_PEND_EXPIRED`
-                * `CANCELED`
-                * `FAILED`""");
+                * `ACTIVATED`
+                * `ARCHIVED`""");
     }
 
+    @DisplayName("속성값(설명) 나열함")
     @Test
     void testGeneratedEnumAttr() {
-        var attrs = DocumentFormatGenerator.generateEnumAttrs(GiftOrderStatus.class, GiftOrderStatus::getDescription);
+        var attrs = DocumentFormatGenerator.generateEnumAttrs(ProductStatus.class, ProductStatus::getDescription);
 
         assertThat(attrs.getValue()).isEqualTo("""
-                * `CREATED`(선물주문생성)
-                * `READY_FOR_ACCEPT`(선물수락대기)
-                * `REJECTED`(선물거절)
-                * `ACCEPTED`(선물수락)
-                * `DELIVERY_PENDING`(배송보류)
-                * `DELIVERED`(선물배송완료)
-                * `ACCEPT_EXPIRED`(선물수락만료)
-                * `DELIVERY_PEND_EXPIRED`(배송보류만료)
-                * `CANCELED`(선물취소완료)
-                * `FAILED`(선물주문실패)""");
+                * `CREATED`(생성)
+                * `ACTIVATED`(활성화)
+                * `ARCHIVED`(보관처리됨)""");
     }
 
+    @DisplayName("지정된 속성값(설명) 나열함")
     @Test
     void testGeneratedEnumListFormat() {
-        var failed = List.of(CREATED, READY_FOR_ACCEPT, ACCEPTED, CANCELED);
+        var failed = List.of(CREATED, ACTIVATED);
 
-        var formatAttr = DocumentFormatGenerator.generateEnumListFormatAttribute(failed, GiftOrderStatus::getDescription);
+        var formatAttr = DocumentFormatGenerator.generateEnumListFormatAttribute(failed, ProductStatus::getDescription);
 
         assertThat(formatAttr.getValue()).isEqualTo(
                 """
-                        * `CREATED`(선물주문생성)
-                        * `READY_FOR_ACCEPT`(선물수락대기)
-                        * `ACCEPTED`(선물수락)
-                        * `CANCELED`(선물취소완료)""");
+                * `CREATED`(생성)
+                * `ACTIVATED`(활성화)""");
     }
 }

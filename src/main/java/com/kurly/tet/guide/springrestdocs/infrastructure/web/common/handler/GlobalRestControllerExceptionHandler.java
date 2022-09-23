@@ -8,6 +8,7 @@ import org.springframework.core.convert.ConversionFailedException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.http.converter.HttpMessageNotReadableException;
+import org.springframework.validation.BindException;
 import org.springframework.web.HttpMediaTypeNotAcceptableException;
 import org.springframework.web.HttpMediaTypeNotSupportedException;
 import org.springframework.web.bind.MethodArgumentNotValidException;
@@ -71,7 +72,8 @@ public class GlobalRestControllerExceptionHandler {
             MethodArgumentTypeMismatchException.class,
             HttpMessageNotReadableException.class,
             HttpMediaTypeNotSupportedException.class,
-            HttpMediaTypeNotAcceptableException.class
+            HttpMediaTypeNotAcceptableException.class,
+            BindException.class
     })
     protected ApiResponse<Void> handle(Exception exception) {
         log.info("[BadRequest] {}", exception.getMessage(), exception);

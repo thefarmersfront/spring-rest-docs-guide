@@ -24,8 +24,20 @@ import org.springframework.web.servlet.mvc.method.annotation.ResponseBodyAdvice;
 import java.lang.reflect.Type;
 import java.util.Objects;
 
+/**
+ * 웹요청 처리결과 응답값을 봉투패턴(Envelop pattern)으로 일정한 데이터 형식으로 가공
+ * <pre>
+ * {
+ *     "code": "0000",
+ *     "message": "OK",
+ *     "data": { data }
+ * }
+ * </pre>
+ */
 @Slf4j
-@RestControllerAdvice(basePackages = {"com.kurly.tet.guide.springrestdocs.infrastructure.web"})
+@RestControllerAdvice(basePackages = {
+        "com.kurly.tet.guide.springrestdocs.infrastructure.web.product"
+})
 public class ApiResponseWrappingAdvisor implements ResponseBodyAdvice<Object> {
 
     private Type getGenericType(MethodParameter returnType) {

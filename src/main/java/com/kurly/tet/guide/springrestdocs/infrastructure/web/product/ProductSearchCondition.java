@@ -4,14 +4,14 @@ import lombok.Getter;
 
 @Getter
 public class ProductSearchCondition {
-    private String name;
-    private String productNumber;
+    private String productName;
+    private String productNo;
 
     public boolean hasName() {
-        return getName() != null && !getName().isEmpty();
+        return getProductName() != null && !getProductName().isEmpty();
     }
 
     public boolean hasProductNumber() {
-        return getProductNumber() != null && !getProductNumber().isEmpty();
+        return getProductNo() != null && !getProductNo().isEmpty();
     }
 }

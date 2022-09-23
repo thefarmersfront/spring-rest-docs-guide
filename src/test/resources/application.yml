@@ -1,0 +1,4 @@
+server:
+  servlet:
+    encoding:
+      force: true
