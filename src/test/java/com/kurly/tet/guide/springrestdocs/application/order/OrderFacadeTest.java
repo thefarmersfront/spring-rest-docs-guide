@@ -45,7 +45,7 @@ class OrderFacadeTest {
         //then
         SoftAssertions.assertSoftly(softly -> {
             softly.assertThat(createdOrder.getMemberNo()).isEqualTo(createCommand.getMemberNo());
-            softly.assertThat(createdOrder.getProducts().get(0).getProductId()).isEqualTo(productId);
+            softly.assertThat(createdOrder.getProducts().get(0).getId()).isEqualTo(productId);
         });
 
     }

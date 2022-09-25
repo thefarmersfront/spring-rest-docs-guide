@@ -6,7 +6,6 @@ import com.kurly.tet.guide.springrestdocs.domain.exception.ProductNotFoundExcept
 import com.kurly.tet.guide.springrestdocs.domain.order.OrderDto;
 import com.kurly.tet.guide.springrestdocs.domain.product.ProductDto;
 import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,7 +20,8 @@ import java.util.List;
 import java.util.UUID;
 
 import static org.springframework.restdocs.mockmvc.RestDocumentationRequestBuilders.post;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put;
 
 @DisplayName("주문API")
 @WebMvcTest({OrderRestController.class})
@@ -50,7 +50,7 @@ class OrderRestControllerTest {
         var requestContent = """
                 {
                     "memberNo":"",
-                    "productIds":[1]
+                    "ids":[1]
                 }
                 """;
         this.mockMvc.perform(
@@ -65,11 +65,11 @@ class OrderRestControllerTest {
 
     @DisplayName("생성: 회원번호(memberNo)를 누락한 경우 400 오류")
     @Test
-    void testCreateOrderWhenEmptyProductIds() throws Exception {
+    void testCreateOrderWhenEmptyids() throws Exception {
         var requestContent = """
                 {
                     "memberNo":"202209251508",
-                    "productIds":[]
+                    "ids":[]
                 }
                 """;
         this.mockMvc.perform(

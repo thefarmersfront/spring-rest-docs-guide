@@ -50,7 +50,7 @@ class ProductRestControllerDocsTest {
                 {
                     "content": [
                       {
-                        "productId": 1,
+                        "id": 1,
                         "productName": "TEST2",
                         "productNo": "00003",
                         "productStatus": "CREATED",
@@ -59,7 +59,7 @@ class ProductRestControllerDocsTest {
                         "modified": "2022-09-22T18:41:52"
                       },
                       {
-                        "productId": 4,
+                        "id": 4,
                         "productName": "TEST5",
                         "productNo": "00006",
                         "productStatus": "CREATED",
@@ -68,7 +68,7 @@ class ProductRestControllerDocsTest {
                         "modified": "2022-09-22T18:41:52"
                       },
                       {
-                        "productId": 7,
+                        "id": 7,
                         "productName": "TEST8",
                         "productNo": "00009",
                         "productStatus": "CREATED",
@@ -77,7 +77,7 @@ class ProductRestControllerDocsTest {
                         "modified": "2022-09-22T18:41:52"
                       },
                       {
-                        "productId": 10,
+                        "id": 10,
                         "productName": "TEST11",
                         "productNo": "00012",
                         "productStatus": "ACTIVATED",
@@ -86,7 +86,7 @@ class ProductRestControllerDocsTest {
                         "modified": "2022-09-22T18:41:52"
                       },
                       {
-                        "productId": 13,
+                        "id": 13,
                         "productName": "TEST14",
                         "productNo": "00015",
                         "productStatus": "ARCHIVED",
@@ -121,7 +121,7 @@ class ProductRestControllerDocsTest {
         var fieldDescriptors = new FieldDescriptor[]{
                 fieldWithPath("code").type(STRING).description("응답코드(정상: 0000)"),
                 fieldWithPath("message").type(STRING).description("응답메시지(정상: OK)"),
-                fieldWithPath("data.content[].productId").type(NUMBER).description("상품일련번호"),
+                fieldWithPath("data.content[].id").type(NUMBER).description("상품일련번호"),
                 fieldWithPath("data.content[].productName").type(STRING).description("상품명"),
                 fieldWithPath("data.content[].productNo").type(STRING).description("상품번호"),
                 fieldWithPath("data.content[].productStatus").type(STRING).attributes(generateEnumAttrs(ProductStatus.class, ProductStatus::getDescription)).description("상품상태"),
@@ -185,7 +185,7 @@ class ProductRestControllerDocsTest {
                 """;
         var createdProductJson = """
                 {
-                    "productId": 1,
+                    "id": 1,
                     "productName": "테스트상품",
                     "productNo": "TEST01",
                     "productStatus": "CREATED",
@@ -204,7 +204,7 @@ class ProductRestControllerDocsTest {
         var responseFieldDescription = new FieldDescriptor[]{
                 fieldWithPath("code").type(STRING).description("응답코드(정상: 0000)"),
                 fieldWithPath("message").type(STRING).description("응답메시지(정상: OK)"),
-                fieldWithPath("data.productId").type(NUMBER).description("상품일련번호"),
+                fieldWithPath("data.id").type(NUMBER).description("상품일련번호"),
                 fieldWithPath("data.productName").type(STRING).description("상품명"),
                 fieldWithPath("data.productNo").type(STRING).description("상품번호"),
                 fieldWithPath("data.productStatus").type(STRING).attributes(generateEnumAttrs(ProductStatus.class, ProductStatus::getDescription)).description("상품상태"),
@@ -213,7 +213,7 @@ class ProductRestControllerDocsTest {
                 fieldWithPath("data.modified").type(STRING).attributes(customFormat(FORMAT_LOCAL_DATE_TIME)).description("변경일시")
         };
 
-        var expectedContent = "{\"code\":\"0000\",\"message\":\"정상\",\"data\":{\"productId\":1,\"productName\":\"테스트상품\",\"productNo\":\"TEST01\",\"productStatus\":\"CREATED\",\"created\":\"2022-09-23T05:46:10\",\"modified\":\"2022-09-23T05:46:10\",\"productStatusDescription\":\"생성\"}}";
+        var expectedContent = "{\"code\":\"0000\",\"message\":\"정상\",\"data\":{\"id\":1,\"productName\":\"테스트상품\",\"productNo\":\"TEST01\",\"productStatus\":\"CREATED\",\"created\":\"2022-09-23T05:46:10\",\"modified\":\"2022-09-23T05:46:10\",\"productStatusDescription\":\"생성\"}}";
         MockMvcFactory.getRestDocsMockMvc(contextProvider, HOST_DEV, controller)
                 .perform(RestDocumentationRequestBuilders.post("/products")
                         .contentType(MediaType.APPLICATION_JSON)
@@ -252,7 +252,7 @@ class ProductRestControllerDocsTest {
     void testGetProduct(RestDocumentationContextProvider contextProvider) throws Exception {
         var sourceJson = """
                 {
-                    "productId": 1,
+                    "id": 1,
                     "productName": "테스트상품",
                     "productNo": "TEST01",
                     "productStatus": "CREATED",
@@ -263,14 +263,14 @@ class ProductRestControllerDocsTest {
         Mockito.when(productFacade.getProduct(Mockito.anyLong()))
                 .thenReturn(JsonUtils.fromJson(sourceJson, ProductDto.class));
 
-        String expectedContent = "{\"code\":\"0000\",\"message\":\"정상\",\"data\":{\"productId\":1,\"productName\":\"테스트상품\",\"productNo\":\"TEST01\",\"productStatus\":\"CREATED\",\"created\":\"2022-09-23T05:46:10\",\"modified\":\"2022-09-23T05:46:10\",\"productStatusDescription\":\"생성\"}}";
+        String expectedContent = "{\"code\":\"0000\",\"message\":\"정상\",\"data\":{\"id\":1,\"productName\":\"테스트상품\",\"productNo\":\"TEST01\",\"productStatus\":\"CREATED\",\"created\":\"2022-09-23T05:46:10\",\"modified\":\"2022-09-23T05:46:10\",\"productStatusDescription\":\"생성\"}}";
 
-        var parameterDescriptor = parameterWithName("productId").description("상품번호");
+        var parameterDescriptor = parameterWithName("id").description("상품번호");
 
         var fieldDescriptors = new FieldDescriptor[]{
                 fieldWithPath("code").type(STRING).description("응답코드(정상: 0000)"),
                 fieldWithPath("message").type(STRING).description("응답메시지(정상: OK)"),
-                fieldWithPath("data.productId").type(NUMBER).description("상품일련번호"),
+                fieldWithPath("data.id").type(NUMBER).description("상품일련번호"),
                 fieldWithPath("data.productName").type(STRING).description("상품명"),
                 fieldWithPath("data.productNo").type(STRING).description("상품번호"),
                 fieldWithPath("data.productStatus").type(STRING).attributes(generateEnumAttrs(ProductStatus.class, ProductStatus::getDescription)).description("상품상태"),
@@ -280,7 +280,7 @@ class ProductRestControllerDocsTest {
         };
 
         MockMvcFactory.getRestDocsMockMvc(contextProvider, HOST_DEV, controller)
-                .perform(RestDocumentationRequestBuilders.get("/products/{productId}", 1L)
+                .perform(RestDocumentationRequestBuilders.get("/products/{id}", 1L)
                         .contentType(MediaType.APPLICATION_JSON))
                 .andDo(MockMvcResultHandlers.print())
                 .andExpect(MockMvcResultMatchers.status().isOk())
@@ -323,7 +323,7 @@ class ProductRestControllerDocsTest {
 
         var modifiedProductJson = """
                 {
-                    "productId": 1,
+                    "id": 1,
                     "productName": "테스트상품",
                     "productNo": "TEST01",
                     "productStatus": "ACTIVATED",
@@ -331,12 +331,12 @@ class ProductRestControllerDocsTest {
                     "modified": "2022-09-23T05:46:10"
                 }""";
 
-        var expectedContent = "{\"code\":\"0000\",\"message\":\"정상\",\"data\":{\"productId\":1,\"productName\":\"테스트상품\",\"productNo\":\"TEST01\",\"productStatus\":\"ACTIVATED\",\"created\":\"2022-09-23T05:46:10\",\"modified\":\"2022-09-23T05:46:10\",\"productStatusDescription\":\"활성화\"}}";
+        var expectedContent = "{\"code\":\"0000\",\"message\":\"정상\",\"data\":{\"id\":1,\"productName\":\"테스트상품\",\"productNo\":\"TEST01\",\"productStatus\":\"ACTIVATED\",\"created\":\"2022-09-23T05:46:10\",\"modified\":\"2022-09-23T05:46:10\",\"productStatusDescription\":\"활성화\"}}";
 
         Mockito.when(productFacade.modify(Mockito.anyLong(), Mockito.any()))
                 .thenReturn(JsonUtils.fromJson(modifiedProductJson, ProductDto.class));
 
-        var parameterDescriptor = parameterWithName("productId").description("상품번호");
+        var parameterDescriptor = parameterWithName("id").description("상품번호");
 
         var requestFieldDescription = new FieldDescriptor[]{
                 fieldWithPath("productName").type(STRING).description("상품명"),
@@ -347,7 +347,7 @@ class ProductRestControllerDocsTest {
         var responseFieldDescription = new FieldDescriptor[]{
                 fieldWithPath("code").type(STRING).description("응답코드(정상: 0000)"),
                 fieldWithPath("message").type(STRING).description("응답메시지(정상: OK)"),
-                fieldWithPath("data.productId").type(NUMBER).description("상품일련번호"),
+                fieldWithPath("data.id").type(NUMBER).description("상품일련번호"),
                 fieldWithPath("data.productName").type(STRING).description("상품명"),
                 fieldWithPath("data.productNo").type(STRING).description("상품번호"),
                 fieldWithPath("data.productStatus").type(STRING).attributes(generateEnumAttrs(ProductStatus.class, ProductStatus::getDescription)).description("상품상태"),
@@ -357,7 +357,7 @@ class ProductRestControllerDocsTest {
         };
 
         MockMvcFactory.getRestDocsMockMvc(contextProvider, HOST_DEV, controller)
-                .perform(RestDocumentationRequestBuilders.put("/products/{productId}", 1L)
+                .perform(RestDocumentationRequestBuilders.put("/products/{id}", 1L)
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(modifyCommandJson)
                 )
@@ -400,10 +400,10 @@ class ProductRestControllerDocsTest {
     void testDeleteProduct(RestDocumentationContextProvider contextProvider) throws Exception {
         var expectedContent = "";
 
-        var parameterDescriptor = parameterWithName("productId").description("상품번호");
+        var parameterDescriptor = parameterWithName("id").description("상품번호");
 
         MockMvcFactory.getRestDocsMockMvc(contextProvider, HOST_DEV, controller)
-                .perform(RestDocumentationRequestBuilders.delete("/products/{productId}", 1L)
+                .perform(RestDocumentationRequestBuilders.delete("/products/{id}", 1L)
                         .contentType(MediaType.APPLICATION_JSON)
                 )
                 .andDo(MockMvcResultHandlers.print())

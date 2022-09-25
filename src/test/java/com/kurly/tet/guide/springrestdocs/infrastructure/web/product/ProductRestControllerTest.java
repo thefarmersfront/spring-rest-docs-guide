@@ -63,7 +63,7 @@ class ProductRestControllerTest {
                 .thenThrow(new ProductNotFoundException(Long.MAX_VALUE));
 
         this.mockMvc.perform(
-                        get("/products/{productId}", Long.MAX_VALUE)
+                        get("/products/{id}", Long.MAX_VALUE)
                                 .contentType(MediaType.APPLICATION_JSON)
                 )
                 .andDo(MockMvcResultHandlers.print())
@@ -85,7 +85,7 @@ class ProductRestControllerTest {
                 }
                 """;
         this.mockMvc.perform(
-                        put("/products/{productId}", Long.MAX_VALUE)
+                        put("/products/{id}", Long.MAX_VALUE)
                                 .contentType(MediaType.APPLICATION_JSON)
                                 .content(modifyContent)
                 )
@@ -106,7 +106,7 @@ class ProductRestControllerTest {
                 """;
 
         this.mockMvc.perform(
-                        put("/products/{productId}", Long.MAX_VALUE)
+                        put("/products/{id}", Long.MAX_VALUE)
                                 .contentType(MediaType.APPLICATION_JSON)
                                 .content(modifyContent)
                 )
@@ -119,7 +119,7 @@ class ProductRestControllerTest {
     @Test
     void testDeleteWhenNotFound() throws Exception {
         this.mockMvc.perform(
-                        delete("/products/{productId}", Long.MAX_VALUE)
+                        delete("/products/{id}", Long.MAX_VALUE)
                                 .contentType(MediaType.APPLICATION_JSON)
                 )
                 .andDo(MockMvcResultHandlers.print())

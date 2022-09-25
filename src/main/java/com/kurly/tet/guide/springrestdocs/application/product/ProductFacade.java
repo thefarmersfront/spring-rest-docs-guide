@@ -50,7 +50,7 @@ public class ProductFacade {
 
     public ProductDto getProduct(Long productId) {
         return products.stream()
-                .filter(it -> it.getProductId().equals(productId)).findFirst()
+                .filter(it -> it.getId().equals(productId)).findFirst()
                 .orElseThrow(() -> new ProductNotFoundException(productId));
     }
 
@@ -62,6 +62,6 @@ public class ProductFacade {
     }
 
     public void remove(Long productId) {
-        products.removeIf(it -> it.getProductId().equals(productId));
+        products.removeIf(it -> it.getId().equals(productId));
     }
 }

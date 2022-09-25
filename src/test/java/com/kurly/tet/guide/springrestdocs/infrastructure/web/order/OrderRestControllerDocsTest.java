@@ -59,7 +59,7 @@ class OrderRestControllerDocsTest {
                        "orderStatusDescription":"배송완료",
                        "products":[
                          {
-                           "productId":1,
+                           "id":1,
                            "productName":"TEST2",
                            "productNo":"00003",
                            "productStatus":"CREATED",
@@ -68,7 +68,7 @@ class OrderRestControllerDocsTest {
                            "productStatusDescription":"생성"
                          },
                          {
-                           "productId":4,
+                           "id":4,
                            "productName":"TEST5",
                            "productNo":"00006",
                            "productStatus":"CREATED",
@@ -91,7 +91,7 @@ class OrderRestControllerDocsTest {
                        "orderStatusDescription":"출하완료 ",
                        "products":[
                          {
-                           "productId":4,
+                           "id":4,
                            "productName":"TEST5",
                            "productNo":"00006",
                            "productStatus":"CREATED",
@@ -100,7 +100,7 @@ class OrderRestControllerDocsTest {
                            "productStatusDescription":"생성"
                          },
                          {
-                           "productId":7,
+                           "id":7,
                            "productName":"TEST8",
                            "productNo":"00009",
                            "productStatus":"CREATED",
@@ -123,7 +123,7 @@ class OrderRestControllerDocsTest {
                        "orderStatusDescription":"결제완료",
                        "products":[
                          {
-                           "productId":7,
+                           "id":7,
                            "productName":"TEST8",
                            "productNo":"00009",
                            "productStatus":"CREATED",
@@ -132,7 +132,7 @@ class OrderRestControllerDocsTest {
                            "productStatusDescription":"생성"
                          },
                          {
-                           "productId":10,
+                           "id":10,
                            "productName":"TEST11",
                            "productNo":"00012",
                            "productStatus":"CREATED",
@@ -155,7 +155,7 @@ class OrderRestControllerDocsTest {
                        "orderStatusDescription":"주문완료",
                        "products":[
                          {
-                           "productId":4,
+                           "id":4,
                            "productName":"TEST5",
                            "productNo":"00006",
                            "productStatus":"CREATED",
@@ -164,7 +164,7 @@ class OrderRestControllerDocsTest {
                            "productStatusDescription":"생성"
                          },
                          {
-                           "productId":7,
+                           "id":7,
                            "productName":"TEST8",
                            "productNo":"00009",
                            "productStatus":"CREATED",
@@ -173,7 +173,7 @@ class OrderRestControllerDocsTest {
                            "productStatusDescription":"생성"
                          },
                          {
-                           "productId":10,
+                           "id":10,
                            "productName":"TEST11",
                            "productNo":"00012",
                            "productStatus":"CREATED",
@@ -220,7 +220,7 @@ class OrderRestControllerDocsTest {
                 fieldWithPath("data.content[].orderNo").type(STRING).description("주문번호"),
                 fieldWithPath("data.content[].orderStatus").type(STRING).attributes(generateEnumAttrs(OrderStatus.class, OrderStatus::getDescription)).description("주문상태"),
                 fieldWithPath("data.content[].orderStatusDescription").type(STRING).description("주문상태설명"),
-                fieldWithPath("data.content[].products[].productId").type(NUMBER).description("상품일련번호"),
+                fieldWithPath("data.content[].products[].id").type(NUMBER).description("상품일련번호"),
                 fieldWithPath("data.content[].products[].productName").type(STRING).description("상품명"),
                 fieldWithPath("data.content[].products[].productNo").type(STRING).description("상품번호"),
                 fieldWithPath("data.content[].products[].productStatus").type(STRING).attributes(generateEnumAttrs(ProductStatus.class, ProductStatus::getDescription)).description("상품상태"),
@@ -301,7 +301,7 @@ class OrderRestControllerDocsTest {
                   "orderStatusDescription":"주문완료",
                   "products":[
                     {
-                      "productId":1,
+                      "id":1,
                       "productName":"TEST2",
                       "productNo":"00003",
                       "productStatus":"CREATED",
@@ -310,7 +310,7 @@ class OrderRestControllerDocsTest {
                       "productStatusDescription":"생성"
                     },
                     {
-                      "productId":4,
+                      "id":4,
                       "productName":"TEST5",
                       "productNo":"00006",
                       "productStatus":"CREATED",
@@ -337,7 +337,7 @@ class OrderRestControllerDocsTest {
                 fieldWithPath("data.orderNo").type(STRING).description("주문번호"),
                 fieldWithPath("data.orderStatus").type(STRING).attributes(generateEnumAttrs(OrderStatus.class, OrderStatus::getDescription)).description("주문상태"),
                 fieldWithPath("data.orderStatusDescription").type(STRING).description("주문상태설명"),
-                fieldWithPath("data.products[].productId").type(NUMBER).description("상품일련번호"),
+                fieldWithPath("data.products[].id").type(NUMBER).description("상품일련번호"),
                 fieldWithPath("data.products[].productName").type(STRING).description("상품명"),
                 fieldWithPath("data.products[].productNo").type(STRING).description("상품번호"),
                 fieldWithPath("data.products[].productStatus").type(STRING).attributes(generateEnumAttrs(ProductStatus.class, ProductStatus::getDescription)).description("상품상태"),
@@ -359,7 +359,7 @@ class OrderRestControllerDocsTest {
                 .andDo(MockMvcResultHandlers.print())
                 .andExpect(MockMvcResultMatchers.status().isCreated())
                 //REST Docs 용
-                .andDo(MockMvcRestDocumentation.document("post-v1-create-product",
+                .andDo(MockMvcRestDocumentation.document("post-v1-create-order",
                         getDocumentRequest(),
                         getDocumentResponse(),
                         requestFields(
@@ -392,7 +392,7 @@ class OrderRestControllerDocsTest {
                     "paymentMoney": 1000
                 }
                 """;
-        var expectedContent = "{\"code\":\"0000\",\"message\":\"정상\",\"data\":{\"id\":1,\"memberNo\":\"1111\",\"orderNo\":\"202209251659441\",\"orderStatus\":\"PAID\",\"products\":[{\"productId\":1,\"productName\":\"TEST2\",\"productNo\":\"00003\",\"productStatus\":\"CREATED\",\"created\":\"2022-09-25T16:59:23\",\"modified\":\"2022-09-25T16:59:23\",\"productStatusDescription\":\"생성\"},{\"productId\":4,\"productName\":\"TEST5\",\"productNo\":\"00006\",\"productStatus\":\"CREATED\",\"created\":\"2022-09-25T16:59:23\",\"modified\":\"2022-09-25T16:59:23\",\"productStatusDescription\":\"생성\"}],\"orderDateTime\":\"2022-09-25T16:59:44\",\"paymentMoney\":1000,\"paymentDateTime\":\"2022-09-25T17:00:46\",\"shipmentDateTime\":null,\"completedDateTime\":null,\"orderStatusDescription\":\"결제완료\"}}";
+        var expectedContent = "{\"code\":\"0000\",\"message\":\"정상\",\"data\":{\"id\":1,\"memberNo\":\"1111\",\"orderNo\":\"202209251659441\",\"orderStatus\":\"PAID\",\"products\":[{\"id\":1,\"productName\":\"TEST2\",\"productNo\":\"00003\",\"productStatus\":\"CREATED\",\"created\":\"2022-09-25T16:59:23\",\"modified\":\"2022-09-25T16:59:23\",\"productStatusDescription\":\"생성\"},{\"id\":4,\"productName\":\"TEST5\",\"productNo\":\"00006\",\"productStatus\":\"CREATED\",\"created\":\"2022-09-25T16:59:23\",\"modified\":\"2022-09-25T16:59:23\",\"productStatusDescription\":\"생성\"}],\"orderDateTime\":\"2022-09-25T16:59:44\",\"paymentMoney\":1000,\"paymentDateTime\":\"2022-09-25T17:00:46\",\"shipmentDateTime\":null,\"completedDateTime\":null,\"orderStatusDescription\":\"결제완료\"}}";
         var parameterDescriptor = parameterWithName("orderNo").description("주문번호");
         var requestFieldDescription = new FieldDescriptor[]{
                 fieldWithPath("paymentMoney").type(NUMBER).description("결제금액")
@@ -407,7 +407,7 @@ class OrderRestControllerDocsTest {
                   "orderStatusDescription":"결제완료",
                   "products":[
                     {
-                      "productId":1,
+                      "id":1,
                       "productName":"TEST2",
                       "productNo":"00003",
                       "productStatus":"CREATED",
@@ -416,7 +416,7 @@ class OrderRestControllerDocsTest {
                       "productStatusDescription":"생성"
                     },
                     {
-                      "productId":4,
+                      "id":4,
                       "productName":"TEST5",
                       "productNo":"00006",
                       "productStatus":"CREATED",
@@ -443,7 +443,7 @@ class OrderRestControllerDocsTest {
                 fieldWithPath("data.orderNo").type(STRING).description("주문번호"),
                 fieldWithPath("data.orderStatus").type(STRING).attributes(generateEnumAttrs(OrderStatus.class, OrderStatus::getDescription)).description("주문상태"),
                 fieldWithPath("data.orderStatusDescription").type(STRING).description("주문상태설명"),
-                fieldWithPath("data.products[].productId").type(NUMBER).description("상품일련번호"),
+                fieldWithPath("data.products[].id").type(NUMBER).description("상품일련번호"),
                 fieldWithPath("data.products[].productName").type(STRING).description("상품명"),
                 fieldWithPath("data.products[].productNo").type(STRING).description("상품번호"),
                 fieldWithPath("data.products[].productStatus").type(STRING).attributes(generateEnumAttrs(ProductStatus.class, ProductStatus::getDescription)).description("상품상태"),
@@ -500,7 +500,7 @@ class OrderRestControllerDocsTest {
     @Test
     void test06(RestDocumentationContextProvider contextProvider) throws Exception {
         var orderNo = "797a1eb9-d6b8-4875-9ac6-4cbeac65ba40";
-        var expectedContent = "{\"code\":\"0000\",\"message\":\"정상\",\"data\":{\"id\":1,\"memberNo\":\"1111\",\"orderNo\":\"202209251659441\",\"orderStatus\":\"PAID\",\"products\":[{\"productId\":1,\"productName\":\"TEST2\",\"productNo\":\"00003\",\"productStatus\":\"CREATED\",\"created\":\"2022-09-25T16:59:23\",\"modified\":\"2022-09-25T16:59:23\",\"productStatusDescription\":\"생성\"},{\"productId\":4,\"productName\":\"TEST5\",\"productNo\":\"00006\",\"productStatus\":\"CREATED\",\"created\":\"2022-09-25T16:59:23\",\"modified\":\"2022-09-25T16:59:23\",\"productStatusDescription\":\"생성\"}],\"orderDateTime\":\"2022-09-25T16:59:44\",\"paymentMoney\":1000,\"paymentDateTime\":\"2022-09-25T17:00:46\",\"shipmentDateTime\":null,\"completedDateTime\":null,\"orderStatusDescription\":\"결제완료\"}}";
+        var expectedContent = "{\"code\":\"0000\",\"message\":\"정상\",\"data\":{\"id\":1,\"memberNo\":\"1111\",\"orderNo\":\"202209251659441\",\"orderStatus\":\"PAID\",\"products\":[{\"id\":1,\"productName\":\"TEST2\",\"productNo\":\"00003\",\"productStatus\":\"CREATED\",\"created\":\"2022-09-25T16:59:23\",\"modified\":\"2022-09-25T16:59:23\",\"productStatusDescription\":\"생성\"},{\"id\":4,\"productName\":\"TEST5\",\"productNo\":\"00006\",\"productStatus\":\"CREATED\",\"created\":\"2022-09-25T16:59:23\",\"modified\":\"2022-09-25T16:59:23\",\"productStatusDescription\":\"생성\"}],\"orderDateTime\":\"2022-09-25T16:59:44\",\"paymentMoney\":1000,\"paymentDateTime\":\"2022-09-25T17:00:46\",\"shipmentDateTime\":null,\"completedDateTime\":null,\"orderStatusDescription\":\"결제완료\"}}";
         var parameterDescriptor = parameterWithName("orderNo").description("주문번호");
 
         var orderJson = """
@@ -512,7 +512,7 @@ class OrderRestControllerDocsTest {
                   "orderStatusDescription":"결제완료",
                   "products":[
                     {
-                      "productId":1,
+                      "id":1,
                       "productName":"TEST2",
                       "productNo":"00003",
                       "productStatus":"CREATED",
@@ -521,7 +521,7 @@ class OrderRestControllerDocsTest {
                       "productStatusDescription":"생성"
                     },
                     {
-                      "productId":4,
+                      "id":4,
                       "productName":"TEST5",
                       "productNo":"00006",
                       "productStatus":"CREATED",
@@ -548,7 +548,7 @@ class OrderRestControllerDocsTest {
                 fieldWithPath("data.orderNo").type(STRING).description("주문번호"),
                 fieldWithPath("data.orderStatus").type(STRING).attributes(generateEnumAttrs(OrderStatus.class, OrderStatus::getDescription)).description("주문상태"),
                 fieldWithPath("data.orderStatusDescription").type(STRING).description("주문상태설명"),
-                fieldWithPath("data.products[].productId").type(NUMBER).description("상품일련번호"),
+                fieldWithPath("data.products[].id").type(NUMBER).description("상품일련번호"),
                 fieldWithPath("data.products[].productName").type(STRING).description("상품명"),
                 fieldWithPath("data.products[].productNo").type(STRING).description("상품번호"),
                 fieldWithPath("data.products[].productStatus").type(STRING).attributes(generateEnumAttrs(ProductStatus.class, ProductStatus::getDescription)).description("상품상태"),
@@ -608,7 +608,7 @@ class OrderRestControllerDocsTest {
                   "orderStatusDescription":"출하완료",
                   "products":[
                     {
-                      "productId":1,
+                      "id":1,
                       "productName":"TEST2",
                       "productNo":"00003",
                       "productStatus":"CREATED",
@@ -617,7 +617,7 @@ class OrderRestControllerDocsTest {
                       "productStatusDescription":"생성"
                     },
                     {
-                      "productId":4,
+                      "id":4,
                       "productName":"TEST5",
                       "productNo":"00006",
                       "productStatus":"CREATED",
@@ -646,7 +646,7 @@ class OrderRestControllerDocsTest {
                 fieldWithPath("data.orderNo").type(STRING).description("주문번호"),
                 fieldWithPath("data.orderStatus").type(STRING).attributes(generateEnumAttrs(OrderStatus.class, OrderStatus::getDescription)).description("주문상태"),
                 fieldWithPath("data.orderStatusDescription").type(STRING).description("주문상태설명"),
-                fieldWithPath("data.products[].productId").type(NUMBER).description("상품일련번호"),
+                fieldWithPath("data.products[].id").type(NUMBER).description("상품일련번호"),
                 fieldWithPath("data.products[].productName").type(STRING).description("상품명"),
                 fieldWithPath("data.products[].productNo").type(STRING).description("상품번호"),
                 fieldWithPath("data.products[].productStatus").type(STRING).attributes(generateEnumAttrs(ProductStatus.class, ProductStatus::getDescription)).description("상품상태"),
@@ -705,7 +705,7 @@ class OrderRestControllerDocsTest {
                   "orderStatusDescription":"배송완료",
                   "products":[
                     {
-                      "productId":1,
+                      "id":1,
                       "productName":"TEST2",
                       "productNo":"00003",
                       "productStatus":"CREATED",
@@ -714,7 +714,7 @@ class OrderRestControllerDocsTest {
                       "productStatusDescription":"생성"
                     },
                     {
-                      "productId":4,
+                      "id":4,
                       "productName":"TEST5",
                       "productNo":"00006",
                       "productStatus":"CREATED",
@@ -743,7 +743,7 @@ class OrderRestControllerDocsTest {
                 fieldWithPath("data.orderNo").type(STRING).description("주문번호"),
                 fieldWithPath("data.orderStatus").type(STRING).attributes(generateEnumAttrs(OrderStatus.class, OrderStatus::getDescription)).description("주문상태"),
                 fieldWithPath("data.orderStatusDescription").type(STRING).description("주문상태설명"),
-                fieldWithPath("data.products[].productId").type(NUMBER).description("상품일련번호"),
+                fieldWithPath("data.products[].id").type(NUMBER).description("상품일련번호"),
                 fieldWithPath("data.products[].productName").type(STRING).description("상품명"),
                 fieldWithPath("data.products[].productNo").type(STRING).description("상품번호"),
                 fieldWithPath("data.products[].productStatus").type(STRING).attributes(generateEnumAttrs(ProductStatus.class, ProductStatus::getDescription)).description("상품상태"),

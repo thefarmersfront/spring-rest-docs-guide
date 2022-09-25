@@ -11,15 +11,15 @@ import java.time.LocalDateTime;
 @Getter
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
 public class ProductDto {
-    private Long productId;
+    private Long id;
     private String productName;
     private String productNo;
     private ProductStatus productStatus;
     private LocalDateTime created;
     private LocalDateTime modified;
 
-    public ProductDto(Long productId, String productName, String productNo) {
-        this.productId = productId;
+    public ProductDto(Long id, String productName, String productNo) {
+        this.id = id;
         this.productName = productName;
         this.productNo = productNo;
         this.productStatus = ProductStatus.CREATED;
