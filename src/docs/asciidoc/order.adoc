@@ -1,1 +1,123 @@
-=== 주문(Order)
+== 주문(Order)
+주문을 등록하고 `결제(PAID) -> 출하(SHIPPED) -> 배송완료(COMPLETED)` 처리를 할 수 있습니다.
+
+=== 주문검색
+주문정보를 회원번호(memberNo)과 주문번호(orderNo)를 이용해서 검색할 수 있습니다.
+페이징 처리된 목록을 제공합니다.
+
+|====
+|속성 |설명
+
+|`memberNo` |회원번호
+|`orderNo` |주문번호
+|`page` |페이지(0 부터 시작)
+|`size` |페이지당 조회건수(최소: 1, 최대: 1000)
+
+|====
+
+
+[discrete]
+==== 요청
+include::{snippets}/get-v1-get-orders/curl-request.adoc[]
+include::{snippets}/get-v1-get-orders/httpie-request.adoc[]
+include::{snippets}/get-v1-get-orders/http-request.adoc[]
+include::{snippets}/get-v1-get-orders/request-parameters.adoc[]
+
+
+[discrete]
+==== 응답
+include::{snippets}/get-v1-get-orders/http-response.adoc[]
+include::{snippets}/get-v1-get-orders/response-fields.adoc[]
+
+
+=== 주문생성
+주문을 새롭게 등록합니다.
+
+[discrete]
+==== 요청
+include::{snippets}/post-v1-create-order/curl-request.adoc[]
+include::{snippets}/post-v1-create-order/httpie-request.adoc[]
+include::{snippets}/post-v1-create-order/http-request.adoc[]
+include::{snippets}/post-v1-create-order/request-fields.adoc[]
+
+
+[discrete]
+==== 응답
+include::{snippets}/post-v1-create-order/http-response.adoc[]
+include::{snippets}/post-v1-create-order/response-fields.adoc[]
+
+=== 주문결제
+주문을결제합니다.
+
+[discrete]
+==== 요청
+include::{snippets}/post-v1-payment-order/curl-request.adoc[]
+include::{snippets}/post-v1-payment-order/httpie-request.adoc[]
+include::{snippets}/post-v1-payment-order/http-request.adoc[]
+include::{snippets}/post-v1-payment-order/request-fields.adoc[]
+include::{snippets}/post-v1-payment-order/path-parameters.adoc[]
+
+
+[discrete]
+==== 응답
+include::{snippets}/post-v1-payment-order/http-response.adoc[]
+include::{snippets}/post-v1-payment-order/response-fields.adoc[]
+
+=== 주문상세조회
+주문상세정보를 조회합니다.
+
+[discrete]
+==== 요청
+include::{snippets}/get-v1-get-order/curl-request.adoc[]
+include::{snippets}/get-v1-get-order/httpie-request.adoc[]
+include::{snippets}/get-v1-get-order/http-request.adoc[]
+include::{snippets}/get-v1-get-order/path-parameters.adoc[]
+
+
+[discrete]
+==== 응답
+include::{snippets}/get-v1-get-order/http-response.adoc[]
+include::{snippets}/get-v1-get-order/response-fields.adoc[]
+
+
+=== 주문출하
+주문상태를 출하로 변경합니다.
+
+[WARNING]
+====
+결제완료(`PAID`)상태여야 합니다.
+====
+
+[discrete]
+==== 요청
+include::{snippets}/put-v1-shipping-order/curl-request.adoc[]
+include::{snippets}/put-v1-shipping-order/httpie-request.adoc[]
+include::{snippets}/put-v1-shipping-order/http-request.adoc[]
+include::{snippets}/put-v1-shipping-order/path-parameters.adoc[]
+
+
+[discrete]
+==== 응답
+include::{snippets}/put-v1-shipping-order/http-response.adoc[]
+include::{snippets}/put-v1-shipping-order/response-fields.adoc[]
+
+=== 주문배송완료
+주문상태를 완료상태로 변경합니다.
+
+[WARNING]
+====
+출하완료(`SHIPPED`)상태여야 합니다.
+====
+
+[discrete]
+==== 요청
+include::{snippets}/put-v1-complete-order/curl-request.adoc[]
+include::{snippets}/put-v1-complete-order/httpie-request.adoc[]
+include::{snippets}/put-v1-complete-order/http-request.adoc[]
+include::{snippets}/put-v1-complete-order/path-parameters.adoc[]
+
+
+[discrete]
+==== 응답
+include::{snippets}/put-v1-complete-order/http-response.adoc[]
+include::{snippets}/put-v1-complete-order/response-fields.adoc[]
