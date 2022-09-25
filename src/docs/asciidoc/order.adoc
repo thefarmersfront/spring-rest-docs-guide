@@ -51,17 +51,17 @@ include::{snippets}/post-v1-create-order/response-fields.adoc[]
 
 [discrete]
 ==== 요청
-include::{snippets}/post-v1-payment-order/curl-request.adoc[]
-include::{snippets}/post-v1-payment-order/httpie-request.adoc[]
-include::{snippets}/post-v1-payment-order/http-request.adoc[]
-include::{snippets}/post-v1-payment-order/request-fields.adoc[]
-include::{snippets}/post-v1-payment-order/path-parameters.adoc[]
+include::{snippets}/put-v1-payment-order/curl-request.adoc[]
+include::{snippets}/put-v1-payment-order/httpie-request.adoc[]
+include::{snippets}/put-v1-payment-order/http-request.adoc[]
+include::{snippets}/put-v1-payment-order/request-fields.adoc[]
+include::{snippets}/put-v1-payment-order/path-parameters.adoc[]
 
 
 [discrete]
 ==== 응답
-include::{snippets}/post-v1-payment-order/http-response.adoc[]
-include::{snippets}/post-v1-payment-order/response-fields.adoc[]
+include::{snippets}/put-v1-payment-order/http-response.adoc[]
+include::{snippets}/put-v1-payment-order/response-fields.adoc[]
 
 === 주문상세조회
 주문상세정보를 조회합니다.
