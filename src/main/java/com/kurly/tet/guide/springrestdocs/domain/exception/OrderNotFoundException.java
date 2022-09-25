@@ -4,8 +4,8 @@ import com.kurly.tet.guide.springrestdocs.common.exception.BusinessException;
 import org.springframework.http.HttpStatus;
 
 public class OrderNotFoundException extends BusinessException {
-    public OrderNotFoundException(Long id) {
-        super(String.format("주문(ID: %d)을 찾을 수 없습니다.", id));
+    public OrderNotFoundException(String orderNo) {
+        super(String.format("주문(주문번호: %s)을 찾을 수 없습니다.", orderNo));
     }
 
     @Override

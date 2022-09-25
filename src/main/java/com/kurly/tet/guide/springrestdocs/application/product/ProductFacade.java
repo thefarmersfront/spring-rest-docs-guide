@@ -13,6 +13,7 @@ import javax.annotation.PostConstruct;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.atomic.AtomicLong;
+import java.util.stream.Collectors;
 
 /**
  * 대충...
@@ -32,7 +33,11 @@ public class ProductFacade {
     }
 
     public PageResponse search(ProductSearchCondition searchCondition, PageRequest pageRequest) {
-        return new PageResponse<>(this.products, pageRequest, this.products.size());
+        var filteredProducts = this.products.stream()
+                .filter(searchCondition::filter)
+                .collect(Collectors.toList());;
+
+        return new PageResponse<>(filteredProducts, pageRequest, this.products.size());
     }
 
     public ProductDto create(ProductCreateCommand createCommand) {

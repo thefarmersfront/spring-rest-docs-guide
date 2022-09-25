@@ -1,12 +1,13 @@
 package com.kurly.tet.guide.springrestdocs.application.order;
 
 import com.kurly.tet.guide.springrestdocs.application.product.ProductFacade;
-import com.kurly.tet.guide.springrestdocs.domain.exception.ProductNotFoundException;
+import com.kurly.tet.guide.springrestdocs.domain.exception.OrderNotFoundException;
 import com.kurly.tet.guide.springrestdocs.domain.order.OrderDto;
 import com.kurly.tet.guide.springrestdocs.infrastructure.web.common.dto.PageRequest;
 import com.kurly.tet.guide.springrestdocs.infrastructure.web.common.dto.PageResponse;
 import com.kurly.tet.guide.springrestdocs.infrastructure.web.order.OrderSearchCondition;
 import com.kurly.tet.guide.springrestdocs.infrastructure.web.order.command.OrderCreateCommand;
+import com.kurly.tet.guide.springrestdocs.infrastructure.web.order.command.OrderPaymentCommand;
 import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
@@ -39,9 +40,28 @@ public class OrderFacade {
         return createOrder;
     }
 
-    public OrderDto findById(Long orderId) {
+    public OrderDto findByOrderNo(String orderNo) {
         return orders.stream()
-                .filter(it -> it.getId().equals(orderId)).findFirst()
-                .orElseThrow(() -> new ProductNotFoundException(orderId));
+                .filter(it -> it.getOrderNo().equals(orderNo))
+                .findAny()
+                .orElseThrow(() -> new OrderNotFoundException(orderNo));
+    }
+
+    public OrderDto payment(String orderNo, OrderPaymentCommand paymentCommand) {
+        var order = findByOrderNo(orderNo);
+        paymentCommand.payment(order);
+        return order;
+    }
+
+    public OrderDto shipping(String orderNo) {
+        var order = findByOrderNo(orderNo);
+        order.shipping();
+        return order;
+    }
+
+    public OrderDto complete(String orderNo) {
+        var order = findByOrderNo(orderNo);
+        order.complete();
+        return order;
     }
 }

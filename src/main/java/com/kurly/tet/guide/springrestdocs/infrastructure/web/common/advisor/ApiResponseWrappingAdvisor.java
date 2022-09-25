@@ -36,7 +36,8 @@ import java.util.Objects;
  */
 @Slf4j
 @RestControllerAdvice(basePackages = {
-        "com.kurly.tet.guide.springrestdocs.infrastructure.web.product"
+        "com.kurly.tet.guide.springrestdocs.infrastructure.web.product",
+        "com.kurly.tet.guide.springrestdocs.infrastructure.web.order"
 })
 public class ApiResponseWrappingAdvisor implements ResponseBodyAdvice<Object> {
 
