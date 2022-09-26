@@ -1,0 +1,49 @@
+---
+spring:
+  config:
+    activate:
+      on-profile: springdoc-local
+
+springdoc:
+  api-docs:
+    enabled: true
+
+---
+spring:
+  config:
+    activate:
+      on-profile: springdoc-test
+
+springdoc:
+  api-docs:
+    enabled: false
+
+---
+spring:
+  config:
+    activate:
+      on-profile: springdoc-dev
+
+springdoc:
+  api-docs:
+    enabled: true
+
+---
+spring:
+  config:
+    activate:
+      on-profile: springdoc-beta
+
+springdoc:
+  api-docs:
+    enabled: true
+
+---
+spring:
+  config:
+    activate:
+      on-profile: springdoc-prod
+
+springdoc:
+  api-docs:
+    enabled: false

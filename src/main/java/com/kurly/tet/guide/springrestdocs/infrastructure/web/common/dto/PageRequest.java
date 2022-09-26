@@ -1,6 +1,7 @@
 package com.kurly.tet.guide.springrestdocs.infrastructure.web.common.dto;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -8,12 +9,15 @@ import lombok.Setter;
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
 
+@Schema(description = "페이징요청")
 @Getter
 @Setter
 @NoArgsConstructor
 public class PageRequest {
+    @Schema(description = "페이지번호", required = true, minimum = "0")
     @Min(value = 0)
     private int page;
+    @Schema(description = "페이지 내 조회건수(1000건 이상 불가)", required = true, minimum = "0", maximum = "1000")
     @Min(value = 0)
     @Max(value = 1000)
     private int size;

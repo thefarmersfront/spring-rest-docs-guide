@@ -1,1 +1,10 @@
-
+spring:
+  profiles:
+    include:
+      - springdoc
+    group:
+      local: springdoc-local
+      test: springdoc-test
+      dev: springdoc-dev
+      beta: springdoc-beta
+      prod: springdoc-prod

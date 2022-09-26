@@ -107,26 +107,11 @@ class OrderRestControllerTest {
 
     @DisplayName("조회: 요청정보를 찾지 못하는 경우 404 오류")
     @Test
-    void testGetOrderWhenNotFound() throws Exception {
-        var orderNo = UUID.randomUUID().toString();
-        Mockito.when(orderFacade.findByOrderNo(orderNo))
-                .thenThrow(new ProductNotFoundException(Long.MAX_VALUE));
-
-        this.mockMvc.perform(
-                        get("/orders/{orderNo}", orderNo)
-                                .contentType(MediaType.APPLICATION_JSON)
-                )
-                .andDo(MockMvcResultHandlers.print())
-                .andExpect(MockMvcResultMatchers.status().is4xxClientError())
-                .andExpect(MockMvcResultMatchers.content().string("{\"code\":\"C404\",\"message\":\"상품(ID: 9223372036854775807)을 찾을 수 없습니다.\",\"data\":null}"));
-    }
-
-    @DisplayName("조회: 요청정보를 찾지 못하는 경우 404 오류")
-    @Test
     void testFindByOrderNoWhenNotFound() throws Exception {
-        var orderNo = UUID.randomUUID().toString();
+        var orderNo = "797a1eb9-d6b8-4875-9ac6-4cbeac65ba40";
+
         Mockito.when(orderFacade.findByOrderNo(orderNo))
-                .thenThrow(new ProductNotFoundException(Long.MAX_VALUE));
+                .thenThrow(new OrderNotFoundException(orderNo));
 
         this.mockMvc.perform(
                         get("/orders/{orderNo}", orderNo)
@@ -134,13 +119,13 @@ class OrderRestControllerTest {
                 )
                 .andDo(MockMvcResultHandlers.print())
                 .andExpect(MockMvcResultMatchers.status().is4xxClientError())
-                .andExpect(MockMvcResultMatchers.content().string("{\"code\":\"C404\",\"message\":\"상품(ID: 9223372036854775807)을 찾을 수 없습니다.\",\"data\":null}"));
+                .andExpect(MockMvcResultMatchers.content().string("{\"code\":\"C404\",\"message\":\"주문(주문번호: 797a1eb9-d6b8-4875-9ac6-4cbeac65ba40)을 찾을 수 없습니다.\",\"data\":null}"));
     }
 
     @DisplayName("결제: 결제금액이 누락된 경우")
     @Test
     void testPayment() throws Exception {
-        var orderNo = UUID.randomUUID().toString();
+        var orderNo = "797a1eb9-d6b8-4875-9ac6-4cbeac65ba40";
 
         String modifyContent = """
                 {
