@@ -23,7 +23,10 @@ Spring Rest Docs 사용 가이드
 
 <!-- ABOUT THE PROJECT -->
 ## 프로젝트 소개
-곧 기술블로그를 통해 'Spring REST Docs 작성가이드 공유드리겠습니다.' 
+'Spring REST Docs 작성 가이드'를 윟나 예제프로젝트입니다.
+
+'Spring Boot'를 기반으로 하고 있으며 간단하게 Spring REST Docs 와 Springfox 를 활용한 API문서를 제공합니다.
+
 <p style="text-align: right">(<a href="#readme-top">최상단 이동</a>)</p>
 
 <!-- GETTING STARTED -->
@@ -32,6 +35,8 @@ Spring Rest Docs 사용 가이드
 프로젝트를 로컬에서 시작하려면 다음 안내를 따라주시면 됩니다.
 
 ### 요구사항
+* Java 17 이상
+  * Java 설치방법: [여러 개의 JDK를 설치하고 선택해서 사용하기](https://blog.benelog.net/installing-jdk.html)  
 
 ### 설치
 
@@ -55,25 +60,29 @@ Spring Rest Docs 사용 가이드
    1. Spring REST Docs: `build/docs/index.html`
    2. SwaggerUI: `api-spec/openapi3.yaml`
 
-<p style="text-align: right">(<a href="#readme-top">최상단 이동</a>)</p>
+5. 애플리케이션 실행
+```sh
+./gradlew apiBuild
+cd build/libs
+java -jar application.jar
+```
 
-<!-- CONTRIBUTION GUIDE -->
-### 협업방법
+### 확인
+#### Spring REST Docs
+[http://localhost:8080/docs/index.html]()
 
-* 프로젝트를 새롭게 시작했거나 프로젝트 문서가 없다면 확인자가 문서를 생성합니다.
-* PUSH 전에 checkStyle, sonarlint 등을 이용해 코드를 정리해주세요.
-* Pull Request 전에는 로컬 테스트를 반드시 수행해 주세요. <!-- 커밋 훅으로 강제하는 방법도 있겠으나, 핫픽스 등의 급한 처리건이 발생할 수 있으니... -->
+#### Spring REST Docs - OpenAPI Specification Integration
+[http://localhost:8080/swagger/swagger-ui.html]()
+
+#### Springdoc
+[http://localhost:8080/swagger-ui/index.html]()
 
 <p style="text-align: right">(<a href="#readme-top">최상단 이동</a>)</p>
 
 <!-- APPENDIX -->
 ## 부록
 
-* [Choose an Open Source License](https://choosealicense.com)
-* [GitHub Emoji Cheat Sheet](https://www.webpagefx.com/tools/emoji-cheat-sheet)
-* [sdkman.io](https://sdkman.io/)
-* [Markdown Guide](https://www.markdownguide.org/)
-* [Best-README-Template](https://github.com/othneildrew/Best-README-Template)
+* [여러 개의 JDK를 설치하고 선택해서 사용하기](https://blog.benelog.net/installing-jdk.html)
 
 <!-- MARKDOWN LINKS & IMAGES -->
 <!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->

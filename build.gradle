@@ -7,8 +7,8 @@ plugins {
     id "java"
 }
 
-group = "com.kurly.tet"
-version = "0.0.1-SNAPSHOT"
+group = "${projectGroup}"
+version = "${projectVersion}"
 sourceCompatibility = JavaVersion.VERSION_17
 
 configurations {
@@ -85,8 +85,8 @@ openapi3 {
             { url = 'http://localhost:8080' },
     ]
     title = 'spring-rest-docs-guide'
-    description = 'spring-rest-docs-guide description'
-    version = '0.1.0'
+    description = 'Spring REST Docs 테스트 생성물 생성시 추가생성되는 OpenAPI 문서이용'
+    version = "${project.version}"
     format = 'yaml'
 }
 
@@ -106,13 +106,13 @@ gitProperties {
 
 bootJar {
     from("swagger-ui") {
-        into "BOOT-INF/classes/static/swagger-ui"
+        into "BOOT-INF/classes/static/swagger"
     }
     from("${asciidoctor.outputDir}") {
         into "BOOT-INF/classes/static/docs"
     }
     from("build/api-spec") {
-        into "BOOT-INF/classes/static/swagger-ui"
+        into "BOOT-INF/classes/static/swagger"
     }
 
     archiveFileName.set "application.jar"

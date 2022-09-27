@@ -25,7 +25,7 @@ import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 
 import static com.epages.restdocs.apispec.ResourceDocumentation.resource;
 import static com.kurly.tet.guide.springrestdocs.config.Constant.FORMAT_LOCAL_DATE_TIME;
-import static com.kurly.tet.guide.springrestdocs.config.Constant.HOST_DEV;
+import static com.kurly.tet.guide.springrestdocs.config.Constant.HOST_LOCAL;
 import static com.kurly.tet.guide.springrestdocs.documenation.DocumentFormatGenerator.customFormat;
 import static com.kurly.tet.guide.springrestdocs.documenation.DocumentFormatGenerator.generateEnumAttrs;
 import static com.kurly.tet.guide.springrestdocs.documenation.DocumentUtils.getDocumentRequest;
@@ -140,7 +140,7 @@ class ProductRestControllerDocsTest {
         };
 
 
-        MockMvcFactory.getRestDocsMockMvc(contextProvider, HOST_DEV, controller)
+        MockMvcFactory.getRestDocsMockMvc(contextProvider, HOST_LOCAL, controller)
                 .perform(RestDocumentationRequestBuilders.get("/products")
                         .param("page", "0")
                         .param("size", "20")
@@ -214,7 +214,7 @@ class ProductRestControllerDocsTest {
         };
 
         var expectedContent = "{\"code\":\"0000\",\"message\":\"정상\",\"data\":{\"id\":1,\"productName\":\"테스트상품\",\"productNo\":\"TEST01\",\"productStatus\":\"CREATED\",\"created\":\"2022-09-23T05:46:10\",\"modified\":\"2022-09-23T05:46:10\",\"productStatusDescription\":\"생성\"}}";
-        MockMvcFactory.getRestDocsMockMvc(contextProvider, HOST_DEV, controller)
+        MockMvcFactory.getRestDocsMockMvc(contextProvider, HOST_LOCAL, controller)
                 .perform(RestDocumentationRequestBuilders.post("/products")
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(createCommandJson)
@@ -279,7 +279,7 @@ class ProductRestControllerDocsTest {
                 fieldWithPath("data.modified").type(STRING).attributes(customFormat(FORMAT_LOCAL_DATE_TIME)).description("변경일시")
         };
 
-        MockMvcFactory.getRestDocsMockMvc(contextProvider, HOST_DEV, controller)
+        MockMvcFactory.getRestDocsMockMvc(contextProvider, HOST_LOCAL, controller)
                 .perform(RestDocumentationRequestBuilders.get("/products/{id}", 1L)
                         .contentType(MediaType.APPLICATION_JSON))
                 .andDo(MockMvcResultHandlers.print())
@@ -356,7 +356,7 @@ class ProductRestControllerDocsTest {
                 fieldWithPath("data.modified").type(STRING).attributes(customFormat(FORMAT_LOCAL_DATE_TIME)).description("변경일시")
         };
 
-        MockMvcFactory.getRestDocsMockMvc(contextProvider, HOST_DEV, controller)
+        MockMvcFactory.getRestDocsMockMvc(contextProvider, HOST_LOCAL, controller)
                 .perform(RestDocumentationRequestBuilders.put("/products/{id}", 1L)
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(modifyCommandJson)
@@ -402,7 +402,7 @@ class ProductRestControllerDocsTest {
 
         var parameterDescriptor = parameterWithName("id").description("상품번호");
 
-        MockMvcFactory.getRestDocsMockMvc(contextProvider, HOST_DEV, controller)
+        MockMvcFactory.getRestDocsMockMvc(contextProvider, HOST_LOCAL, controller)
                 .perform(RestDocumentationRequestBuilders.delete("/products/{id}", 1L)
                         .contentType(MediaType.APPLICATION_JSON)
                 )

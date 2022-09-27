@@ -15,8 +15,10 @@ import org.springframework.context.annotation.Configuration;
         info = @Info(
                 title = "Spring REST Docs 가이드(Swagger 구성) 응?",
                 version = "v2022.09.26",
-                description = "Spring REST Docs 가이드를 작성하려고 했는데, 일이 너무 커저벼린 건에 대해서 반성중...",
-                contact = @Contact(url = "https://helloworld.kurly.com/", name = "김지헌", email = "jiheon.kim@kurlycorp.com")
+                description = """
+                        Spring REST Docs 가이드를 작성하려고 했는데, 일이 너무 커저버린 건에 대해서 반성중....
+                        생각외로 간단하게 적용가능해서 놀람""",
+                contact = @Contact(url = "https://helloworld.kurly.com/", name = "김지헌(팀 엔지니어링 팀)", email = "jiheon.kim@kurlycorp.com")
         )
 )
 @Configuration

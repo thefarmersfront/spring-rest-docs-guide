@@ -27,8 +27,7 @@ import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 import java.util.UUID;
 
 import static com.epages.restdocs.apispec.ResourceDocumentation.resource;
-import static com.kurly.tet.guide.springrestdocs.config.Constant.FORMAT_LOCAL_DATE_TIME;
-import static com.kurly.tet.guide.springrestdocs.config.Constant.HOST_DEV;
+import static com.kurly.tet.guide.springrestdocs.config.Constant.*;
 import static com.kurly.tet.guide.springrestdocs.documenation.DocumentFormatGenerator.customFormat;
 import static com.kurly.tet.guide.springrestdocs.documenation.DocumentFormatGenerator.generateEnumAttrs;
 import static com.kurly.tet.guide.springrestdocs.documenation.DocumentUtils.getDocumentRequest;
@@ -243,7 +242,7 @@ class OrderRestControllerDocsTest {
                 fieldWithPath("data.hasContent").type(BOOLEAN).description("컨텐츠가있는가?"),
         };
 
-        MockMvcFactory.getRestDocsMockMvc(contextProvider, HOST_DEV, controller)
+        MockMvcFactory.getRestDocsMockMvc(contextProvider, HOST_LOCAL, controller)
                 .perform(RestDocumentationRequestBuilders.get("/orders")
                         .param("page", "0")
                         .param("size", "20")
@@ -351,7 +350,7 @@ class OrderRestControllerDocsTest {
                 fieldWithPath("data.completedDateTime").type(STRING).attributes(customFormat(FORMAT_LOCAL_DATE_TIME)).description("결제완료일시").optional(),
         };
 
-        MockMvcFactory.getRestDocsMockMvc(contextProvider, HOST_DEV, controller)
+        MockMvcFactory.getRestDocsMockMvc(contextProvider, HOST_LOCAL, controller)
                 .perform(RestDocumentationRequestBuilders.post("/orders")
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(createCommandJson)
@@ -457,7 +456,7 @@ class OrderRestControllerDocsTest {
                 fieldWithPath("data.completedDateTime").type(STRING).attributes(customFormat(FORMAT_LOCAL_DATE_TIME)).description("결제완료일시").optional(),
         };
 
-        MockMvcFactory.getRestDocsMockMvc(contextProvider, HOST_DEV, controller)
+        MockMvcFactory.getRestDocsMockMvc(contextProvider, HOST_LOCAL, controller)
                 .perform(RestDocumentationRequestBuilders.put("/orders/{orderNo}/payment", orderNo)
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(commandJson)
@@ -562,7 +561,7 @@ class OrderRestControllerDocsTest {
                 fieldWithPath("data.completedDateTime").type(STRING).attributes(customFormat(FORMAT_LOCAL_DATE_TIME)).description("결제완료일시").optional(),
         };
 
-        MockMvcFactory.getRestDocsMockMvc(contextProvider, HOST_DEV, controller)
+        MockMvcFactory.getRestDocsMockMvc(contextProvider, HOST_LOCAL, controller)
                 .perform(RestDocumentationRequestBuilders.get("/orders/{orderNo}", orderNo)
                         .contentType(MediaType.APPLICATION_JSON)
                 )
@@ -660,7 +659,7 @@ class OrderRestControllerDocsTest {
                 fieldWithPath("data.completedDateTime").type(STRING).attributes(customFormat(FORMAT_LOCAL_DATE_TIME)).description("결제완료일시").optional(),
         };
 
-        MockMvcFactory.getRestDocsMockMvc(contextProvider, HOST_DEV, controller)
+        MockMvcFactory.getRestDocsMockMvc(contextProvider, HOST_LOCAL, controller)
                 .perform(RestDocumentationRequestBuilders.put("/orders/{orderNo}/shipping", orderNo)
                         .contentType(MediaType.APPLICATION_JSON)
                 )
@@ -757,7 +756,7 @@ class OrderRestControllerDocsTest {
                 fieldWithPath("data.completedDateTime").type(STRING).attributes(customFormat(FORMAT_LOCAL_DATE_TIME)).description("결제완료일시").optional(),
         };
 
-        MockMvcFactory.getRestDocsMockMvc(contextProvider, HOST_DEV, controller)
+        MockMvcFactory.getRestDocsMockMvc(contextProvider, HOST_LOCAL, controller)
                 .perform(RestDocumentationRequestBuilders.put("/orders/{orderNo}/complete", orderNo)
                         .contentType(MediaType.APPLICATION_JSON)
                 )
