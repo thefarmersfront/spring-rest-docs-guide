@@ -87,6 +87,13 @@ java -jar application.jar
 ## 부록
 
 * [여러 개의 JDK를 설치하고 선택해서 사용하기](https://blog.benelog.net/installing-jdk.html)
+* [Spring REST Docs](https://spring.io/projects/spring-restdocs)
+  * [Github - Spring REST Docs](https://github.com/spring-projects/spring-restdocs)
+  * [Spring REST Docs - Reference Documentation](https://docs.spring.io/spring-restdocs/docs/current/reference/html5/)
+* [Asciidoctor](https://asciidoctor.org/)
+  * [Gradle - org.asciidoctor.jvm.convert`](https://plugins.gradle.org/plugin/org.asciidoctor.jvm.convert)
+* [Springdoc - Openapi](https://springdoc.org/)
+  * [Swagger annotation](https://github.com/swagger-api/swagger-core/wiki/Swagger-2.X---Annotations)
 
 <!-- MARKDOWN LINKS & IMAGES -->
 <!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
