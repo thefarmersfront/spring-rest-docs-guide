@@ -26,6 +26,7 @@ bin/
 out/
 !**/src/main/**/out/
 !**/src/test/**/out/
+BOOT-INF
 
 ### NetBeans ###
 /nbproject/private/

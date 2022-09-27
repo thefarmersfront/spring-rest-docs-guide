@@ -52,6 +52,16 @@ tasks.named("test") {
     useJUnitPlatform()
 }
 
+tasks.register("restDocsTest", Test) {
+    outputs.dir snippetsDir
+    useJUnitPlatform {
+        includeTags("restDocs")
+    }
+
+    finalizedBy "asciidoctor"
+    finalizedBy "openapi3"
+}
+
 /**
  * <p>
  * 개발환경에서만 API문서를 제공하고자 한다면 빌드태스크에 asciidoctor 를 추가합니다.
@@ -63,9 +73,10 @@ tasks.named("test") {
  * ex)<code>./gradlew clean asciidoctor build</code>
  */
 tasks.named("asciidoctor") {
+    dependsOn restDocsTest
+
     inputs.dir snippetsDir
     configurations "asciidoctorExt"
-    dependsOn restDocsTest
     baseDirFollowsSourceDir() // 원본파일작업은 .adoc 디렉터리 기준
 }
 
@@ -77,15 +88,6 @@ openapi3 {
     description = 'spring-rest-docs-guide description'
     version = '0.1.0'
     format = 'yaml'
-}
-
-tasks.register("restDocsTest", Test) {
-    outputs.dir snippetsDir
-    useJUnitPlatform {
-        includeTags("restDocs")
-    }
-    finalizedBy "asciidoctor"
-    finalizedBy "openapi3"
 }
 
 tasks.register("apiBuild", GradleBuild) {
@@ -103,15 +105,15 @@ gitProperties {
 }
 
 bootJar {
-    from("${asciidoctor.outputDir}") {
-        into "BOOT-INF/classes/static/docs"
-    }
     from("swagger-ui") {
         into "BOOT-INF/classes/static/swagger-ui"
+    }
+    from("${asciidoctor.outputDir}") {
+        into "BOOT-INF/classes/static/docs"
     }
     from("build/api-spec") {
         into "BOOT-INF/classes/static/swagger-ui"
     }
 
-    archiveFileName.set "cloud-application.jar" // entrypoint.sh 에서 실행하기 위해서 파일명은 cloud-application.jar 로 통일
+    archiveFileName.set "application.jar"
 }
