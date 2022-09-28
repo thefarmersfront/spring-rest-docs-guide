@@ -16,16 +16,15 @@ Spring Rest Docs 사용 가이드
         <li><a href="#설치">설치</a></li>
       </ul>
     </li>
-    <li><a href="#협업방법">협업방법</a></li>
     <li><a href="#부록">부록</a></li>
   </ol>
 </details>
 
 <!-- ABOUT THE PROJECT -->
 ## 프로젝트 소개
-'Spring REST Docs 작성 가이드'를 윟나 예제프로젝트입니다.
+'Spring REST Docs 가이드'를 위한 **예제프로젝트** 입니다.
 
-'Spring Boot'를 기반으로 하고 있으며 간단하게 Spring REST Docs 와 Springfox 를 활용한 API문서를 제공합니다.
+['Spring Boot'][url-spring-boot]를 기반으로 하고 있으며 간단하게 ["Spring REST Docs"](url-spring-rest-docs-project) 와 ["Swagger-UI"](url-swagger-ui) 를 활용한 API문서를 제공합니다.
 
 <p style="text-align: right">(<a href="#readme-top">최상단 이동</a>)</p>
 
